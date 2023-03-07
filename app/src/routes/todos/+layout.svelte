@@ -228,41 +228,40 @@
 
         event.preventDefault();
 
-        if (project) {
-          child.parent = project;
-        } else {
-          delete child.parent;
-        }
-
         $loading = true;
         try {
+          if (project) {
+            child.parent = project;
+          } else {
+            delete child.parent;
+          }
+
           await child.$patch();
           failureMessage = undefined;
         } catch (e: any) {
           failureMessage = e?.message;
+          // Refresh on failure, since the change didn't take.
+          await child.$refresh();
         }
         $loading = false;
       } else if (event.dataTransfer.getData('x-nymph/todo')) {
         const guid = event.dataTransfer.getData('x-nymph/todo');
+        const todo = await Todo.factory(guid);
 
-        if (!project) {
+        if (!project || !todo.guid) {
           return;
         }
 
         $loading = true;
         try {
-          const todo = await Todo.factory(guid);
-
-          if (!todo.guid) {
-            return;
-          }
-
           todo.project = project;
 
           await todo.$patch();
           failureMessage = undefined;
         } catch (e: any) {
           failureMessage = e?.message;
+          // Refresh on failure, since the change didn't take.
+          await todo.$refresh();
         }
         $loading = false;
       }
