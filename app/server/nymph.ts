@@ -29,7 +29,7 @@ import type { TodoData } from './entities/Todo.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const PORT = Number(process.env.PORT ?? process.env.PROD_PORT ?? 5173);
-export const DOMAIN = process.env.DOMAIN ?? 'localhost';
+export const DOMAIN = process.env.DOMAIN ?? '127.0.0.1';
 export const PROTO = process.env.CERT || PORT === 443 ? 'https' : 'http';
 export const WSPORT = Number(
   process.env.WSPORT ?? process.env.PORT ?? process.env.PROD_PORT ?? 8080

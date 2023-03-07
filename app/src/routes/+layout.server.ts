@@ -26,7 +26,7 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
   }
 
   const PORT = Number(env.PORT ?? env.PROD_PORT ?? 5173);
-  const DOMAIN = env.DOMAIN ?? 'localhost';
+  const DOMAIN = env.DOMAIN ?? '127.0.0.1';
   const PROTO = env.CERT || PORT === 443 ? 'https' : 'http';
 
   return {

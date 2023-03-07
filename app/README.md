@@ -2,6 +2,16 @@
 
 A Nymph.js, SMUI, SvelteKit template app.
 
+## Structure
+
+This app has two parts.
+
+- `server`: The server side of the Nymph entities and endpoints.
+  Check out [Nymph.js](https://nymph.io) to learn how to modify this code. It is used through the /rest/ endpoint on the server.
+  **Any time you make a change in here, you need to run `npm run build:server` and restart your dev server.**
+- `src`: The SvelteKit app, along with the client side of the Nymph entities.
+  Check out [SvelteKit](https://kit.svelte.dev/) and [SMUI](https://sveltematerialui.com/) to learn how to modify this app.
+
 ## Prereqs
 
 ```sh

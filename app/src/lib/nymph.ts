@@ -30,7 +30,7 @@ const { w3cwebsocket } = websocket;
 
 export const nymphBuilder = (
   fetch?: WindowOrWorkerGlobalScope['fetch'],
-  DOMAIN: string = 'localhost',
+  DOMAIN: string = '127.0.0.1',
   SECURE: boolean = false
 ) => {
   const SERVER =

@@ -6,7 +6,7 @@ An app template using Nymph.js, SMUI, and SvelteKit.
   <img src="screenshot.png" alt="Template App Screenshot" />
 </div>
 
-# Structure
+## Structure
 
 This repository contains two separate parts.
 
@@ -17,13 +17,37 @@ This repository contains two separate parts.
 
 All parts use [Nymph.js](https://nymph.io/) to handle data.
 
-# Local Development
+## Local Development
 
 In development mode, Nymph is configured to use a SQLite3 database, `development.db` in the root folder.
 
-Use `npm i` and `npm run dev` in `app` to run a local dev server. It will then be available at http://localhost:5173/.
+Run these commands:
 
-# Remote Development Server
+```
+npm i
+cd app
+npm i
+npm run dev
+```
+
+to run a local dev server. It will then be available at http://127.0.0.1:5173/.
+
+To get started, create a root user:
+
+```
+Username: root
+Password: [whatever]
+Name: Root
+Email: root@localhost
+```
+
+This user will be created with admin privileges and without any onboarding entities (first time setup). It will have access to the http://127.0.0.1:5173/user/ user admin app.
+
+Now you can log out and create a regular user for testing. This user will not have admin privileges and will be onboarded with some example projects and tasks.
+
+When you create a regular user, the verification email will pop up in your browser. This is what happens in development mode instead of the email actually being sent.
+
+## Remote Development Server
 
 ```
 # Install pm2
@@ -36,7 +60,7 @@ sudo pm2 start pm2.config.cjs --env development
 sudo pm2 restart all
 ```
 
-# Production Server
+## Production Server
 
 ```
 # Install pm2
