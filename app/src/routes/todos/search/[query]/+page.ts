@@ -12,7 +12,7 @@ function parseTodoSearch<T extends EntityConstructor>(
   const Project = nymph.getEntityClass('Project') as T;
 
   // Filter done by default.
-  if (!query.match(/(?:^| )\[done\](?:$| )/)) {
+  if (!query.match(/(?:^| )\[!?done\](?:$| )/)) {
     query += ' [!done]';
   }
 
