@@ -2,6 +2,10 @@
 
 An app template using Nymph.js, SMUI, and SvelteKit.
 
+<div align="center">
+  <img src="screenshot.png" alt="Template App Screenshot" />
+</div>
+
 # Structure
 
 This repository contains two separate parts.
@@ -13,13 +17,13 @@ This repository contains two separate parts.
 
 All parts use [Nymph.js](https://nymph.io/) to handle data.
 
-# Development
+# Local Development
 
-In development, Nymph is configured to use a SQLite3 database, `development.db` in the root folder.
+In development mode, Nymph is configured to use a SQLite3 database, `development.db` in the root folder.
 
-Use `npm run dev` in `app` to run the dev server. It will then be available at http://localhost:5173/.
+Use `npm i` and `npm run dev` in `app` to run a local dev server. It will then be available at http://localhost:5173/.
 
-# Starting Development Server
+# Remote Development Server
 
 ```
 # Install pm2
@@ -32,7 +36,7 @@ sudo pm2 start pm2.config.cjs --env development
 sudo pm2 restart all
 ```
 
-# Starting Production Server
+# Production Server
 
 ```
 # Install pm2
