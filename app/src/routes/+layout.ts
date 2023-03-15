@@ -1,4 +1,4 @@
-import { redirect } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import { get } from 'svelte/store';
 import { buildSessionStuff } from '$lib/nymph';
 import type { LayoutLoad } from './$types';
@@ -45,9 +45,13 @@ export const load: LayoutLoad = async ({ data, fetch }) => {
     systemAdmin,
   } = stuff.stores;
 
-  await get(readyPromise);
-  await get(settingsReadyPromise);
-  await get(projectsReadyPromise);
+  try {
+    await get(readyPromise);
+    await get(settingsReadyPromise);
+    await get(projectsReadyPromise);
+  } catch (e: any) {
+    throw error(500, e.message);
+  }
 
   if (get(systemAdmin)) {
     throw redirect(302, `/user/`);

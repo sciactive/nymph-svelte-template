@@ -1,9 +1,14 @@
+import { error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import type { LayoutServerLoad } from './$types';
 
 export const prerender = false;
 
-export const load: LayoutServerLoad = async ({ cookies }) => {
+export const load: LayoutServerLoad = async ({ cookies, route }) => {
+  if (route.id == null) {
+    throw error(404, 'Not found.');
+  }
+
   const authCookie = cookies.get('TILMELDAUTH');
   let tokens: { xsrfToken?: string; token?: string } = {};
 
