@@ -1,6 +1,7 @@
 import { error, redirect } from '@sveltejs/kit';
 import { get } from 'svelte/store';
 import { buildSessionStuff } from '$lib/nymph';
+import { browser } from '$app/environment';
 import type { LayoutLoad } from './$types';
 
 export const prerender = false;
@@ -36,7 +37,13 @@ export const load: LayoutLoad = async ({ data, fetch }) => {
     }
   }
 
-  const stuff = buildSessionStuff(fetch, tokens, DOMAIN, SECURE == 'true');
+  const stuff = buildSessionStuff(
+    fetch,
+    tokens,
+    browser,
+    DOMAIN,
+    SECURE == 'true'
+  );
 
   const {
     readyPromise,

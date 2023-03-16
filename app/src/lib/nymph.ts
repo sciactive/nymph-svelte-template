@@ -30,6 +30,7 @@ const { w3cwebsocket } = websocket;
 
 export const nymphBuilder = (
   fetch?: WindowOrWorkerGlobalScope['fetch'],
+  browser: boolean = false,
   DOMAIN: string = '127.0.0.1',
   SECURE: boolean = false
 ) => {
@@ -53,6 +54,7 @@ export const nymphBuilder = (
         ? window.WebSocket
         : (w3cwebsocket as unknown as typeof WebSocket),
     fetch,
+    noAutoconnect: !browser,
   };
 
   const nymph = new Nymph(nymphOptions);
@@ -92,11 +94,13 @@ export const nymphBuilder = (
 export let buildSessionStuff = (
   fetch: WindowOrWorkerGlobalScope['fetch'],
   tokens: { xsrfToken?: string; token?: string },
+  browser?: boolean,
   DOMAIN?: string,
   SECURE?: boolean
 ): SessionStuff => {
   const { nymph, pubsub, User, Group, Project, Settings, Todo } = nymphBuilder(
     fetch,
+    browser,
     DOMAIN,
     !!SECURE
   );
